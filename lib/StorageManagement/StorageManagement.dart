@@ -70,32 +70,11 @@ class _StorageManagementState extends State<StorageManagement> {
                   title: "REQUEST REDELIVERY",
                   onPressed: () {
                     widget.manager.testing();
-                    showDatePicker(
-                      context: context,
-                      selectableDayPredicate: (DateTime val) =>
-                      val.weekday == 7 ? false : true,
-                      initialDate: DateTime.now().add(Duration(days: 3)),
-                      firstDate: DateTime.now().add(Duration(days: 3)),
-                      lastDate: DateTime.now().add(Duration(days: 90)),
-                      cancelText: "not now",
-                      confirmText: "book",
-                      builder: (BuildContext context, Widget child) {
-                        return Theme(
-                          data: ThemeData.light().copyWith(
-                            colorScheme: ColorScheme.dark(
-                              primary: PackedUpColors.PUpRed,
-                              primaryVariant: Colors.amber,
-                              onPrimary: PackedUpColors.PUpBackgroundLogoColor,
-                              surface: PackedUpColors.PUpBackgroundLogoColor,
-                              onSurface: PackedUpColors.PUpRed,
-                            ),
-                            dialogBackgroundColor:PackedUpColors.PUpBackgroundLogoColor,
-                          ),
-                          child: child,
-                        );
-                      },
-                    );
-                  })),
+                    presentDatePicker(DateTime.now().add(Duration(days: 3)),
+                        DateTime.now().add(Duration(days: 3)),
+                        DateTime.now().add(Duration(days: 90)));
+                  })
+          ),
           Container(
             child: Text(
               "All items must be re-delivered together",
@@ -150,6 +129,34 @@ class _StorageManagementState extends State<StorageManagement> {
           ),
         ],
       ),
+    );
+  }
+
+  void presentDatePicker(DateTime initialDate, DateTime firstDate, DateTime lastDate) {
+    showDatePicker(
+      context: context,
+      selectableDayPredicate: (DateTime val) =>
+      val.weekday == 7 ? false : true,
+      initialDate: initialDate,
+      firstDate: firstDate,
+      lastDate: lastDate,
+      cancelText: "not now",
+      confirmText: "book redelivery",
+      builder: (BuildContext context, Widget child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.dark(
+              primary: PackedUpColors.PUpRed,
+              primaryVariant: Colors.amber,
+              onPrimary: PackedUpColors.PUpBackgroundLogoColor,
+              surface: PackedUpColors.PUpBackgroundLogoColor,
+              onSurface: PackedUpColors.PUpRed,
+            ),
+            dialogBackgroundColor:PackedUpColors.PUpBackgroundLogoColor,
+          ),
+          child: child,
+        );
+      },
     );
   }
 }
