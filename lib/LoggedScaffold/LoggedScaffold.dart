@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:packedup/Helpers/PackedUpColors.dart';
 import 'package:packedup/ItemSelection/ItemSelection.dart';
 import 'package:packedup/StorageManagement/StorageManagement.dart';
+import 'package:packedup/UserPage/UserPage.dart';
 
 class LoggedScaffold extends StatefulWidget {
   @override
@@ -18,9 +19,7 @@ class _LoggedScaffoldState extends State<LoggedScaffold> {
             children: <Widget>[
               ItemsSelection(),
               StorageManagement(),
-              Container(
-                color: Colors.green,
-              ),
+              UserPage(),
             ],
             physics: NeverScrollableScrollPhysics(),
           ),

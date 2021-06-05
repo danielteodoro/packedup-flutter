@@ -70,6 +70,31 @@ class _StorageManagementState extends State<StorageManagement> {
                   title: "REQUEST REDELIVERY",
                   onPressed: () {
                     widget.manager.testing();
+                    showDatePicker(
+                      context: context,
+                      selectableDayPredicate: (DateTime val) =>
+                      val.weekday == 7 ? false : true,
+                      initialDate: DateTime.now().add(Duration(days: 3)),
+                      firstDate: DateTime.now().add(Duration(days: 3)),
+                      lastDate: DateTime.now().add(Duration(days: 90)),
+                      cancelText: "not now",
+                      confirmText: "book",
+                      builder: (BuildContext context, Widget child) {
+                        return Theme(
+                          data: ThemeData.light().copyWith(
+                            colorScheme: ColorScheme.dark(
+                              primary: PackedUpColors.PUpRed,
+                              primaryVariant: Colors.amber,
+                              onPrimary: PackedUpColors.PUpBackgroundLogoColor,
+                              surface: PackedUpColors.PUpBackgroundLogoColor,
+                              onSurface: PackedUpColors.PUpRed,
+                            ),
+                            dialogBackgroundColor:PackedUpColors.PUpBackgroundLogoColor,
+                          ),
+                          child: child,
+                        );
+                      },
+                    );
                   })),
           Container(
             child: Text(

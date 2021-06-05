@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:packedup/Helpers/PackedUpColors.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:packedup/LoggedScaffold/LoggedScaffold.dart';
 
 class LoginView extends StatefulWidget {
@@ -11,6 +11,10 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Scaffold(
       body: Container(
         color: PackedUpColors.PUpBackgroundLogoColor,
@@ -31,7 +35,7 @@ class _LoginViewState extends State<LoginView> {
               Container(
                 padding: EdgeInsets.only(top: 14, bottom: 30),
                 child: Text(
-                  "Storage per item. Save money.",
+                  "Store per item. Save money.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: PackedUpColors.PUpRed,
